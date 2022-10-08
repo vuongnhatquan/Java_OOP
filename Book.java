@@ -1,12 +1,11 @@
 package library_management;
 
 public class Book {
-		//att
-			
+		//atts
 		private int bookID, amount, available;
 		private String bookTitle;
 		
-		//get-set
+		//get-set methods
 		public int getBookID() {
 			return bookID;
 		}
@@ -32,7 +31,7 @@ public class Book {
 			this.bookTitle = bookTitle;
 		}
 		
-		//constructor
+		//constructors
 		public Book() {this.bookID = 2; this.amount = 3; this.available = 3; this.bookTitle = "Hello Java";}
 		
 		public Book(int bookID, String bookTitle, int amount) {this.bookID = bookID; this.amount = amount; this.available = amount; this.bookTitle = bookTitle;}
