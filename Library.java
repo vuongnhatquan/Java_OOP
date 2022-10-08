@@ -2,7 +2,7 @@ package library_management ;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Scanner;
-import java.util.ArrayList;												//mới dùng dc ArrayList
+import java.util.ArrayList;												
 
 public class Library {
 		//atts
@@ -22,16 +22,25 @@ public class Library {
 					}
 		
 		//methods
+		public void showLibraryInfo() {
+			System.out.println("Library name: "+ libraryName);
+			System.out.println("Current number of books: "+ numberOfBooks);
+			System.out.println("List of book titles:");
+			for(Book b : bookList)
+				{System.out.println("\t" + b.getBookTitle());}
+			System.out.println();
+		}
+	
 		public void addNewBook() {
 			if (numberOfBooks == MAX_NUMBER_OF_BOOKS)
 				{System.out.println("The number of books has reached the limit"); return;}
 			
 			System.out.println("Enter book's ID: ");
 			int iD = s.nextInt();
-			if (this.findBookIndex(iD) >= 0) {System.out.println("ID has existed"); return;}
+			if (this.findBookIndex(iD) >= 0) {System.out.println("The ID has existed"); return;}
 			
 			System.out.println("Enter book's title: ");
-			s.nextLine();									//phải có dòng này khi scanner read int then String
+			s.nextLine();									
 			String title = s.nextLine();
 			
 			System.out.println("Enter book's amount: ");
@@ -39,7 +48,7 @@ public class Library {
 			
 					
 			if (numberOfBooks + amount > MAX_NUMBER_OF_BOOKS) {System.out.println("The number of books has reached the limit"); return;}
-			bookList.add(new Book(iD, title, amount));			//phải có new		
+			bookList.add(new Book(iD, title, amount));					
 			
 			numberOfBooks += amount;
 		}
@@ -56,17 +65,7 @@ public class Library {
 				{bookList.get(index).showBookInfo(); return true;}
 			return false;
 		}
-		
-		public Book getALuckyBook() {
-			int max = bookList.size();
-			int randomNum = ThreadLocalRandom.current().nextInt(0, max + 1);
-			Book k = bookList.get(randomNum);
-			
-			int avlb = k.getAvailable();
-			k.setAvailable(avlb-1);
-			return k;
-		}
-		
+	
 		public void borrowBook(int bookID) {
 			if (this.findBook(bookID) == true)
 				{int index_br = this.findBookIndex(bookID);
@@ -77,6 +76,15 @@ public class Library {
 					bookList.get(index_br).showBookInfo();
 					}
 				}
+		}
+	
+		public void returnBook(int bookID) {
+			int index_br = this.findBookIndex(bookID);
+			if (index_br != -1)
+			{int avlb = bookList.get(index_br).getAvailable();
+			bookList.get(index_br).setAvailable(avlb+1);
+			System.out.println("The book is returned successfully!");
+			bookList.get(index_br).showBookInfo();}
 		}
 		
 		public String[] split(String word) {
@@ -89,29 +97,21 @@ public class Library {
 				{for (Book bk: bookList)
 					{for (String part_bk: this.split(bk.getBookTitle()))
 						{if (part.equalsIgnoreCase(part_bk))
-							{bk.showBookInfo();return true;}
+							{bk.showBookInfo(); return true;}
 						}
 					}
 				}
 			return false;
 		}
 		
-		public void returnBook(int bookID) {
-			int index_br = this.findBookIndex(bookID);
-			if (index_br != -1)
-			{int avlb = bookList.get(index_br).getAvailable();
-			bookList.get(index_br).setAvailable(avlb+1);
-			System.out.println("The book is returned successfully!");
-			bookList.get(index_br).showBookInfo();}
-		}
-		
-		public void showLibraryInfo() {
-			System.out.println("Library name: "+ libraryName);
-			System.out.println("Current number of books: "+ numberOfBooks);
-			System.out.println("List of book titles:");
-			for(Book b : bookList)
-				{System.out.println("\t" + b.getBookTitle());}
-			System.out.println();
+		public Book getALuckyBook() {
+			int max = bookList.size();
+			int randomNum = ThreadLocalRandom.current().nextInt(0, max + 1);
+			Book k = bookList.get(randomNum);
+			
+			int avlb = k.getAvailable();
+			k.setAvailable(avlb-1);
+			return k;
 		}
 }
 
