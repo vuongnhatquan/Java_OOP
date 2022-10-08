@@ -26,53 +26,33 @@ public class Program {
 	
 	public static void select(Library lib, int option) {
 		switch (option) {
-		 case 1: System.out.println("1. Show library information");
-		 		 System.out.println("---------------------");
-		 		 lib.showLibraryInfo();
-		 		 System.out.println("_________ end _________");
-		 		 break;
+		 case 1: lib.showLibraryInfo();
+		 	 break;
 		 		 
-		 case 2: System.out.println("2. Add new book");
-		 		 System.out.println("---------------------");
-		 		 lib.addNewBook();
-		 		 System.out.println("_________ end _________");
-		 		 break;
+		 case 2: lib.addNewBook();
+		 	 System.out.println("_________ end _________");
+		 	 break;
 		 		 
-		 case 3: System.out.println("3. Find book");
-		 		 System.out.println("---------------------");
-		 		 lib.findBook(enterBookID());
-		 		 System.out.println("_________ end _________");
-		 		 break;
+		 case 3: lib.findBook(enterBookID());
+		 	 System.out.println("_________ end _________");
+		 	 break;
 		 		 
-		 case 4: System.out.println("4. Borrow a book");
-		 		 System.out.println("---------------------");
-		 		 lib.borrowBook(enterBookID());
-		 		 System.out.println("_________ end _________");
-		 		 break;
+		 case 4: lib.borrowBook(enterBookID());
+		 	 break;
 		 
-		 case 5: System.out.println("5. Return a book");
-	 		 	 System.out.println("---------------------");
-	 		 	 lib.returnBook(enterBookID());
-	 		 	 System.out.println("_________ end _________");
-	 		 	 break;
+		 case 5: lib.returnBook(enterBookID());
+	 		 break;
 	 		 	 
-		 case 6: System.out.println("6. Find book with Title");
- 	 	 		 System.out.println("---------------------");
- 	 	 		 lib.findBook(enterBooTitle());
- 	 	 		 System.out.println("_________ end _________");
- 	 	 		 break;
+		 case 6: lib.findBook(enterBooTitle());
+ 	 	 	 System.out.println("_________ end _________");
+ 	 	 	 break;
 	 		 	 
-		 case 7: System.out.println("7. Get a lucky book");
-		 	 	 System.out.println("---------------------");
-		 	 	 Book b = lib.getALuckyBook();
-		 	 	 b.showBookInfo();
-		 	 	 System.out.println("_________ end _________");
-		 	 	 break;
+		 case 7: lib.getALuckyBook();
+		 	 break;
 		 	 
-		 default:
-			 	 System.out.println("Good bye!");
-			 	 cont = false;
-			 	 break;} 
+		 default: System.out.println("Good bye!");
+			  cont = false;
+			  break;} 
 	}
 	
 	public static int enterBookID() {
@@ -88,10 +68,10 @@ public class Program {
 	
 	public static void main(String[] args) {
 		Library lib = new Library();
-			 showMenu();
-			 askOption();
-			 select(lib, option);
-			 cont = true;
-			 while (cont) {showMenu(); askOption(); select(lib, option);}
+		showMenu();
+		askOption();
+		select(lib, option);
+		cont = true;
+		while (cont) {showMenu(); askOption(); select(lib, option);}
 	}
 }
