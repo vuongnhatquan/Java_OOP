@@ -23,15 +23,23 @@ public class Library {
 		
 		//methods
 		public void showLibraryInfo() {
+			System.out.println("1. Show library information");
+			System.out.println("---------------------");
+			
 			System.out.println("Library name: "+ libraryName);
 			System.out.println("Current number of books: "+ numberOfBooks);
 			System.out.println("List of book titles:");
 			for(Book b : bookList)
 				{System.out.println("\t" + b.getBookTitle());}
 			System.out.println();
+			
+			System.out.println("_________ end _________");
 		}
 	
 		public void addNewBook() {
+			System.out.println("2. Add new book");
+			System.out.println("---------------------");
+			
 			if (numberOfBooks == MAX_NUMBER_OF_BOOKS)
 				{System.out.println("The number of books has reached the limit"); return;}
 			
@@ -55,11 +63,14 @@ public class Library {
 		
 		private int findBookIndex(int bookID) {
 			for(int i=0; i<bookList.size(); i++)
-				{if (bookList.get(i).getBookID() == bookID) return i; }
+				{if (bookList.get(i).getBookID() == bookID) return i;}
 			return -1;
 		}
 		
 		public boolean findBook(int bookID) {
+			System.out.println("3. Find book");
+			System.out.println("---------------------");
+			
 			int index = this.findBookIndex(bookID);
 			if (index >= 0)
 				{bookList.get(index).showBookInfo(); return true;}
@@ -67,6 +78,9 @@ public class Library {
 		}
 	
 		public void borrowBook(int bookID) {
+			System.out.println("4. Borrow a book");
+			System.out.println("---------------------");
+			
 			if (this.findBook(bookID) == true)
 				{int index_br = this.findBookIndex(bookID);
 				int avlb = bookList.get(index_br).getAvailable();
@@ -76,15 +90,22 @@ public class Library {
 					bookList.get(index_br).showBookInfo();
 					}
 				}
+			
+			System.out.println("_________ end _________");
 		}
 	
 		public void returnBook(int bookID) {
+			System.out.println("5. Return a book");
+			System.out.println("---------------------");
+			
 			int index_br = this.findBookIndex(bookID);
 			if (index_br != -1)
 			{int avlb = bookList.get(index_br).getAvailable();
 			bookList.get(index_br).setAvailable(avlb+1);
 			System.out.println("The book is returned successfully!");
 			bookList.get(index_br).showBookInfo();}
+			
+			System.out.println("_________ end _________");
 		}
 		
 		public String[] split(String word) {
@@ -93,6 +114,9 @@ public class Library {
 		}
 		
 		public boolean findBook(String keyword) {
+			System.out.println("6. Find book with title");
+			System.out.println("---------------------");
+			
 			for (String part: this.split(keyword))
 				{for (Book bk: bookList)
 					{for (String part_bk: this.split(bk.getBookTitle()))
@@ -105,13 +129,19 @@ public class Library {
 		}
 		
 		public Book getALuckyBook() {
+			System.out.println("7. Get a lucky book");
+			System.out.println("---------------------");
+			
 			int max = bookList.size();
 			int randomNum = ThreadLocalRandom.current().nextInt(0, max + 1);
 			Book k = bookList.get(randomNum);
 			
 			int avlb = k.getAvailable();
 			k.setAvailable(avlb-1);
+			k.showBookInfo();
 			return k;
+			
+			System.out.println("_________ end _________");
 		}
 }
 
