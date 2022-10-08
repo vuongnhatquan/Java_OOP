@@ -139,9 +139,8 @@ public class Library {
 			int avlb = k.getAvailable();
 			k.setAvailable(avlb-1);
 			k.showBookInfo();
-			return k;
-			
 			System.out.println("_________ end _________");
+			return k;
 		}
 }
 
