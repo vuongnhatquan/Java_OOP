@@ -2,7 +2,7 @@ package library_management ;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Scanner;
-import java.util.ArrayList;												//mới dùng dc ArrayList
+import java.util.ArrayList;												
 
 public class Library {
 		//atts
@@ -40,7 +40,7 @@ public class Library {
 			if (this.findBookIndex(iD) >= 0) {System.out.println("ID has existed"); return;}
 			
 			System.out.println("Enter book's title: ");
-			s.nextLine();									//phải có dòng này khi scanner read int then String
+			s.nextLine();									
 			String title = s.nextLine();
 			
 			System.out.println("Enter book's amount: ");
@@ -48,7 +48,7 @@ public class Library {
 			
 					
 			if (numberOfBooks + amount > MAX_NUMBER_OF_BOOKS) {System.out.println("The number of books has reached the limit"); return;}
-			bookList.add(new Book(iD, title, amount));			//phải có new		
+			bookList.add(new Book(iD, title, amount));			
 			
 			numberOfBooks += amount;
 		}
